@@ -15,9 +15,15 @@ func realMain(args []string) int {
 		fmt.Fprintln(os.Stderr, "YAML file is required")
 		return exitError
 	}
-	f := args[1]
+	filename := args[1]
 
-	fmt.Println(f)
+	data, err := parseYAMLFile(filename)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		return exitError
+	}
+
+	fmt.Printf("%#v\n", data)
 
 	return exitOK
 }
