@@ -12,7 +12,7 @@ malaysia:
   kuala_lumpur:
 singapore:
 
-$ yaml2dir dirs.yaml
+$ yaml2dirs dirs.yaml
 
 $ tree --charset=ascii .
 .
