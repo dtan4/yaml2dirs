@@ -8,16 +8,16 @@ import (
 
 func TestParseYAMLFile(t *testing.T) {
 	filename := "testdata/dirs.yaml"
-	want := map[string]interface{}{
-		"japan": map[string]interface{}{
+	want := &dirTree{
+		"japan": dirTree{
 			"nagoya": nil,
 			"osaka":  nil,
-			"tokyo": map[string]interface{}{
+			"tokyo": dirTree{
 				"shibuya":  nil,
 				"shinjuku": nil,
 			},
 		},
-		"malaysia": map[string]interface{}{
+		"malaysia": dirTree{
 			"kuala_lumpur": nil,
 		},
 		"singapore": nil,
@@ -28,7 +28,7 @@ func TestParseYAMLFile(t *testing.T) {
 		t.Errorf("want no error, got %s", err)
 	}
 
-	if diff := cmp.Diff(want, got); diff != "" {
+	if diff := cmp.Diff(*want, *got); diff != "" {
 		t.Errorf("-want, +got:\n%s", diff)
 	}
 }
