@@ -6,4 +6,4 @@ build:
 
 .PHONY: test
 test:
-	go test -cover -race -v
+	go test -cover -coverprofile=coverage.txt -race -v
