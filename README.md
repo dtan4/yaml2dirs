@@ -2,15 +2,15 @@
 
 ```sh-session
 $ cat dirs.yaml
-- japan
-  - nagoya
-  - osaka
-  - tokyo
-    - shibuya
-    - shinjuku
-- malaysia
-  - kuala_lumpur
-- singapore
+japan:
+  nagoya:
+  osaka:
+  tokyo:
+    shibuya:
+    shinjuku:
+malaysia:
+  kuala_lumpur:
+singapore:
 
 $ yaml2dir dirs.yaml
 
