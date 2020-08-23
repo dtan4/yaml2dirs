@@ -17,13 +17,22 @@ func realMain(args []string) int {
 	}
 	filename := args[1]
 
-	data, err := parseYAMLFile(filename)
+	t, err := parseYAMLFile(filename)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintln(os.Stderr, fmt.Errorf("cannot parse the given YAML file: %w", err))
 		return exitError
 	}
 
-	fmt.Printf("%#v\n", data)
+	rootDir, err := os.Getwd()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, fmt.Errorf("cannot get working directory: %w", err))
+		return exitError
+	}
+
+	if err := makeDirs(rootDir, t); err != nil {
+		fmt.Fprintln(os.Stderr, fmt.Errorf("cannot create directories: %w", err))
+		return exitError
+	}
 
 	return exitOK
 }
